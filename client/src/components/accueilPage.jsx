@@ -1,0 +1,10 @@
+
+const DisplayRoom=() =>{
+    return(
+        <div>
+            <p>hello</p>
+        </div>
+    )
+}
+
+export default DisplayRoom
