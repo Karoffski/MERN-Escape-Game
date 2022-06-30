@@ -20,7 +20,7 @@ app.use("/rooms", roomsRoutes)
 
 
 app.listen(port, () => {
-  mongoose.connect('mongodb+srv://Admin:blablabla@cluster-matrice.twad4hy.mongodb.net/?retryWrites=true&w=majority')
+  mongoose.connect('mongodb+srv://Admin:blablabla@cluster-matrice.twad4hy.mongodb.net/escapegame?retryWrites=true&w=majority')
         .then(()=>{console.log('Connected');})
         .catch(()=>{console.log('Fail');})
 })

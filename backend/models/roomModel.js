@@ -1,14 +1,9 @@
 import mongoose from 'mongoose';
 
 const roomSchema = new mongoose.Schema({
-  name: String,
-  description: String,
-  limit: Number,
-  capacity: Number,
-  id: Number,
-  availability: Number
+  name: String
 })
 
-const Room = mongoose.model('Rooms', roomSchema);
+const Room = mongoose.model('rooms', roomSchema);
 
 export default Room;

@@ -1,30 +1,30 @@
 import Room from "../models/roomModel.js";
 
-export async function createRoom(name){
+export function createRoom(name){
     
-    const Toy = await new Toys(name)
+    const Room = new Room({name})
    
-    const result = await Toy.save()
+    const result = Room.save()
     
     return result
 }
 
 export async function listRoom(){
-    const roomList = await Toys
+    const roomList = await Room
       .find()
     
       return roomList
 }
 
 export async function showOneRoom(name){
-    const myRoom = await Toys
+    const myRoom = await Room
     
     .findOne({name:name})
     
     return myRoom
 }
 export async function updateRoom(name,body){
-    const myRoomUpdated = await Toys
+    const myRoomUpdated = await Room
     
     .findOneAndUpdate({name:name},{name:body})
 
@@ -33,7 +33,7 @@ export async function updateRoom(name,body){
 
 
 export async function deleteOneRoom(name){
-    const myRoomDeleted = await Toys
+    const myRoomDeleted = await Room
     
     .deleteOne({name:name})
 

@@ -1,33 +1,35 @@
 import express from 'express';
-import { createRoom, listRoom, showOneRoom, updateRoom, deleteOneRoom } from '../controller/user.js';
+import { createRoom, listRoom, showOneRoom, updateRoom, deleteOneRoom } from '../controller/room.js';
 const router = express.Router()
 
 router.use(express.json())
 router.use(express.urlencoded({ extended: true }))
 
-router.get('/', async (req, res) => {
-    let toys = await listRoom()
-    res.json(toys);
+router.get('/', (req, res) => {
+    let room = listRoom()
+    res.json(room);
 })
 
 router.get('/:name', async (req, res) => {
-    let toyName = await showOneRoom(req.params.name)
-    res.json(toyName)
+    let roomName = await showOneRoom(req.params.name)
+    res.json(roomName)
 })
 
 router.post('/', async (req, res) => {
-    const newToy = await createRoom(req.body)
-    res.send('ok')
+    const newRoom = createRoom(req.body)
+    res.json(newRoom)
 })
 
 router.put('/:name', async (req, res) => {
     console.log(req.params.name);
-    let updateOneToy = await updateRoom(req.params.name,req.body.name)
+    let updateOneRoom = await updateRoom(req.params.name,req.body.name)
+    res.json(updateOneRoom)
     }
 );
 
 router.delete('/:id', function (req, res) {
-    let deleteOne= deleteOneRoom(req.params.id)
+    let deleteRoom= deleteOneRoom(req.params.id)
+    res.json(deleteRoom)
 })
 
 export default router;
