@@ -1,3 +1,6 @@
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+
 const InscriptionForm =()=>{
     return(
     <div>
@@ -9,6 +12,7 @@ const InscriptionForm =()=>{
             <input type="text" placeholder="confirmation mot de passe"/>
             <input type="text" placeholder="e-mail"/>
         </form>
+        
     </div>
     )
 }

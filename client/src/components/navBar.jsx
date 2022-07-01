@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom'
-
+import {Outlet} from 'react-router-dom'
 
 const NavBar= () =>{ 
     return(
@@ -7,6 +7,7 @@ const NavBar= () =>{
         <nav>
             <Link to='accueilPage'>home </Link>
             <Link to='connectingPage'>connexion</Link>
+            <Outlet/>
         </nav>
         </div>
     )

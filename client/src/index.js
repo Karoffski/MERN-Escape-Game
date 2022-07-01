@@ -11,11 +11,12 @@ const rootElement = document.getElementById('root');
 const root = createRoot(rootElement)
 root.render(
   <BrowserRouter>
-    <NavBar/>
     <Routes>       
-      <Route path='/' element={<DisplayRoom/>}/>
-      <Route path='connectingPage' element={<ConnexionForm/>}/>
-      <Route path='connectingPage/inscriptionPage' element={<InscriptionForm/>}/>  
+      <Route path='/' element={<NavBar/>}>
+        <Route path='connectingPage' element={<ConnexionForm/>}/>
+        <Route path='inscriptionPage' element={<InscriptionForm/>}/>
+        <Route path='accueilPage' element={<DisplayRoom/>}/>
+      </Route>  
     </Routes>
   </BrowserRouter>
 )
