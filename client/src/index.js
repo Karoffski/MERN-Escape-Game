@@ -5,6 +5,7 @@ import NavBar from './components/navBar.jsx'
 import DisplayRoom from './components/accueilPage.jsx';
 import ConnexionForm from './components/connectingPage.jsx';
 import InscriptionForm from './components/inscriptionPage.jsx';
+import ClientSpace from './components/clientSpace.jsx';
 
 
 const rootElement = document.getElementById('root');
@@ -16,6 +17,7 @@ root.render(
         <Route path='connectingPage' element={<ConnexionForm/>}/>
         <Route path='inscriptionPage' element={<InscriptionForm/>}/>
         <Route path='accueilPage' element={<DisplayRoom/>}/>
+        <Route path='clientSpace' element={<ClientSpace/>}/>
       </Route>  
     </Routes>
   </BrowserRouter>
