@@ -1,26 +1,34 @@
-const port = 5000;
+// Imports
 import express from 'express';
 import cors from 'cors';
+import roomRoute from './routes/rooms.js';
+import userRoute from './routes/users.js';
+import reservationRoute from './routes/reservations.js';
+
+// Initializing express
 const app = express();
+
+// Port & URI
+const PORT = process.env.PORT || 4000;
+const database = process.env.MONGOLAB_URI;
+
+// Mongo database
 import mongoose from 'mongoose';
-import roomsRoutes from "./routes/rooms.js";
-//import usersRoutes from "./routes/users.js";
-//import reservationsRoutes from "./routes/reservations.js";
+import dotenv from 'dotenv';
+dotenv.config();
 
-app.use(cors({ origin: true, credentials: true}));
-app.use(express.json({extended: true}))
+// Parse & Cors
+app.use((express.json({extended: true})))
+app.use((express.urlencoded({ extended: true})))
+app.use((cors()));
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+// Routes
+app.use('/rooms', roomRoute);
+app.use('/users', userRoute);
+app.use('/reservations', reservationRoute);
 
-//app.use("/users", usersRoutes)
-app.use("/rooms", roomsRoutes)
-//app.use("/reservations", reservationsRoutes)
-
-
-app.listen(port, () => {
-  mongoose.connect('mongodb+srv://Admin:blablabla@cluster-matrice.twad4hy.mongodb.net/escapegame?retryWrites=true&w=majority')
-        .then(()=>{console.log('Connected');})
-        .catch(()=>{console.log('Fail');})
-})
+// Connecting to MongoDB followed by server
+mongoose.connect(database, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connection to MongoDB has been established'))
+    .then(() => app.listen(PORT, () => console.log("Server has started at port " + PORT)))    
+    .catch((error) => console.log(error.message) & process.exit(1))    

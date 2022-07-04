@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema({
   adress: String,
   adressNumber: Number,
   isAdmin: Boolean
-
 })
 
 const User = mongoose.model('Users', userSchema);

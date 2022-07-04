@@ -1,41 +1,46 @@
 import Room from "../models/roomModel.js";
 
-export function createRoom(name){
-    
-    const Room = new Room({name})
-   
-    const result = Room.save()
-    
-    return result
+export const getRooms =  async (req, res) => {
+    try {
+        const listRooms = await Room.find()
+        res.status(200).json(listRooms);
+    } catch (error) {
+        res.status(404).json({message: error.message })
+    }  
 }
 
-export async function listRoom(){
-    const roomList = await Room
-      .find()
-    
-      return roomList
+export const getOneRoom = async (req, res) => {
+    try {
+        const myRoom = await Room.findOne({name: req.params.name})
+        res.status(200).json(myRoom);
+    } catch (error) {
+        res.status(404).json({message: error.message })
+    } 
 }
 
-export async function showOneRoom(name){
-    const myRoom = await Room
-    
-    .findOne({name:name})
-    
-    return myRoom
-}
-export async function updateRoom(name,body){
-    const myRoomUpdated = await Room
-    
-    .findOneAndUpdate({name:name},{name:body})
-
-    return myRoomUpdated
+export const createRoom = async (req, res) => {
+    try {
+        const newRoom = await Room.create({ id: req.body.id, name: req.body.name, description: req.body.description, price: req.body.price, capacity: req.body.capacity, image:req.body.image })
+        res.status(200).json(newRoom)
+    } catch (error) {
+        res.status(404).json({message: error.message })
+    }    
 }
 
+export const updateRoom = async (req, res) => {
+    try {
+        const updatedRoom =  await Room.findOneAndUpdate({name:req.params.name},{name:req.body.name})
+        res.status(200).json(updatedRoom)
+    } catch (error) {
+        res.status(404).json({message: error.message })
+    }   
+}
 
-export async function deleteOneRoom(name){
-    const myRoomDeleted = await Room
-    
-    .deleteOne({name:name})
-
-    return myRoomDeleted
+export const deleteRoom = async (req, res) => {
+    try {
+        const deletedRoom = await Room.deleteOne({name: req.params.name})
+        res.status(200).json(deletedRoom)
+    } catch(error) {
+        res.status(404).json({message: error.message })
+    }  
 }
