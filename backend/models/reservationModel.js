@@ -4,10 +4,11 @@ const reservationSchema = new mongoose.Schema({
     numberPlayers: Number,
     firstName: String,
     lastName: String,
-    birthday: Date
-  
+    birthday: Date,
+    userId: Number,
+    roomId: Number
 })
 
-const Reservation = mongoose.model('Reservations', reservationSchema);
+const Reservation = mongoose.model('reservations', reservationSchema);
 
 export default Reservation;

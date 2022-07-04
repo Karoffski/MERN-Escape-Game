@@ -1,14 +1,12 @@
 import mongoose from 'mongoose';
 
 const roomSchema = new mongoose.Schema({
-  id: Number,
   name: String,
   description: String,
   price: Number,
   capacity: Number,
   image: String,
-  ageLimit: String,
-  reservation: []
+  ageLimit: String
 })
 
 const Room = mongoose.model('rooms', roomSchema);

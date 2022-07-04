@@ -3,9 +3,9 @@ const router = express.Router();
 import {createRoom, getRooms, getOneRoom, updateRoom, deleteRoom} from '../controller/room.js';
 
 router.get('/', getRooms);
-router.get(':name', getOneRoom);
+router.get('/:id', getOneRoom);
 router.post('/', createRoom);
-router.patch('/:name', updateRoom);
-router.delete('/:name', deleteRoom);
+router.patch('/:id', updateRoom);
+router.delete('/:id', deleteRoom);
 
 export default router;

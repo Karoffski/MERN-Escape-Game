@@ -1,4 +1,4 @@
-import Reservation from "../models/userModel.js";
+import Reservation from "../models/reservationModel.js";
 
 export const getReservations =  async (req, res) => {
     try {
@@ -20,7 +20,7 @@ export const getOneReservation = async (req, res) => {
 
 export const createReservation = async (req, res) => {
     try {
-        const newReservation = await Reservation.create({ id: req.body.id, name: req.body.name, description: req.body.description, price: req.body.price, capacity: req.body.capacity, image:req.body.image })
+        const newReservation = await Reservation.create({ id: req.body.id, numberPlayers: req.body.numberPlayers, firstName:req.body.firstName, lastName: req.body.lastName, birthday: req.body.birthday, userId: req.body.userId, roomId: req.body.roomId})
         res.status(200).json(newReservation)
     } catch (error) {
         res.status(404).json({message: error.message })
