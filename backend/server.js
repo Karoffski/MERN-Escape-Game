@@ -14,8 +14,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Port & URI
-const PORT = process.env.PORT || 5000;
-const database = process.env.MONGOLAB_URI;
+const PORT = process.env.PORT || 4000;
+const database = process.env.MONGO_URI;
 
 // Parse & Cors
 app.use((express.json({extended: true})))
