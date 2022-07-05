@@ -25,7 +25,7 @@ const NavBar= () =>{
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to='accueilPage'>home </Link>
+              <Link to='rooms'>Rooms</Link>
           </Typography>
           <Button color="inherit">
               <Link to='connectingPage'>connexion</Link>
