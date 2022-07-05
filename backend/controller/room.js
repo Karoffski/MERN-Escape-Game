@@ -20,7 +20,7 @@ export const getOneRoom = async (req, res) => {
 
 export const createRoom = async (req, res) => {
     try {
-        const newRoom = await Room.create({ id: req.body.id, name: req.body.name, description: req.body.description, price: req.body.price, capacity: req.body.capacity, image:req.body.image, ageLimit: req.body.ageLimit })
+        const newRoom = await Room.create({ name: req.body.name, description: req.body.description, price: req.body.price, capacity: req.body.capacity, image:req.body.image, ageLimit: req.body.ageLimit })
         res.status(200).json(newRoom)
     } catch (error) {
         res.status(404).json({message: error.message })
@@ -29,7 +29,7 @@ export const createRoom = async (req, res) => {
 
 export const updateRoom = async (req, res) => {
     try {
-        const updatedRoom =  await Room.findByIdAndUpdate({id:req.params.id}, {id:req.body.id})
+        const updatedRoom =  await Room.findByIdAndUpdate(req.params.id, req.body)
         res.status(200).json(updatedRoom)
     } catch (error) {
         res.status(404).json({message: error.message })
@@ -38,7 +38,7 @@ export const updateRoom = async (req, res) => {
 
 export const deleteRoom = async (req, res) => {
     try {
-        const deletedRoom = await Room.deleteOne({id: req.params.id})
+        const deletedRoom = await Room.deleteOne({_id: req.params.id})
         res.status(200).json(deletedRoom)
     } catch(error) {
         res.status(404).json({message: error.message })

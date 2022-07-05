@@ -11,7 +11,7 @@ export const getUsers =  async (req, res) => {
 
 export const getOneUser = async (req, res) => {
     try {
-        const myUser = await User.findOne({lastName: req.params.lastName})
+        const myUser = await User.findById({_id: req.params.id})
         res.status(200).json(myUser);
     } catch (error) {
         res.status(404).json({message: error.message })
@@ -20,7 +20,7 @@ export const getOneUser = async (req, res) => {
 
 export const createUser = async (req, res) => {
     try {
-        const newUser = await User.create({ id: req.body.id, email: req.body.email, password: req.body.password, firstName: req.body.firstName, lastName: req.body.lastName, adress:req.body.adress, adressNumber: req.body.adressNumber, isAdmin: req.body.isAdmin })
+        const newUser = await User.create({ email: req.body.email, password: req.body.password, firstName: req.body.firstName, lastName: req.body.lastName, adress:req.body.adress, adressNumber: req.body.adressNumber, isAdmin: req.body.isAdmin })
         res.status(200).json(newUser)
     } catch (error) {
         res.status(404).json({message: error.message })
@@ -29,7 +29,7 @@ export const createUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
     try {
-        const updatedUser =  await User.findOneAndUpdate({name:req.params.name},{name:req.body.name})
+        const updatedUser =  await User.findByIdAndUpdate(req.params.id, req.body)
         res.status(200).json(updatedUser)
     } catch (error) {
         res.status(404).json({message: error.message })
@@ -38,7 +38,7 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
     try {
-        const deletedUser = await User.deleteOne({name: req.params.name})
+        const deletedUser = await User.deleteOne({_id: req.params.id})
         res.status(200).json(deletedUser)
     } catch(error) {
         res.status(404).json({message: error.message })
