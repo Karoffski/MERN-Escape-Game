@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const NavBar= () =>{ 
+const NavBar= () =>{
     return(
         <div>
             <Box sx={{ flexGrow: 1 }}>

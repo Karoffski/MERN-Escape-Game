@@ -1,28 +1,34 @@
 import axios from "axios";
 import React,{useEffect, useState} from "react";
+import { Link } from 'react-router-dom';
 
-const DisplayRoom=() =>{
+const DisplayRooms=() =>{
     useEffect(()=>{
-        getImage()
+        getData()
        },[])
-    const [images, setImages]= useState([])
-    const getImage=()=>{
+    const [roomData, setData]= useState([])
+    const getData=()=>{
         return axios
-        .get('https://jsonplaceholder.typicode.com/photos')
+        .get('http://localhost:4000/rooms')
         .then((res)=>{
-        setImages(res.data)})
+        setData(res.data)})
         .catch((err)=>console.error(err))
    }
-    return(
-        <div>
-            {images.map((image)=>{
-                        return (
-                        <img src={image.url} alt="" key={image.id} />
-                        )
-                    })}
-            
-        </div>
+
+return(
+    <div>
+        {roomData.map((room)=>{
+                    return (
+                        <div key={room._id}>
+                            <h1>{room.name}</h1>
+                            <Link to={`/accueilPage/${room._id}`}><img src={room.image} alt="" key={room._id} /></Link>
+                       </div>
+                    )
+                }
+            )
+        }
+    </div>
     )
 }
 
-export default DisplayRoom
+export default DisplayRooms;
