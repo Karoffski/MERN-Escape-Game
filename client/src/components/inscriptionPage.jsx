@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -29,14 +31,46 @@ function Copyright(props) {
 
 
 const InscriptionForm =()=>{
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-          email: data.get('email'),
-          password: data.get('password'),
-        });
-      };
+  const [form, setForm] = useState({
+    email:"",
+    password:"",
+    firstName:"",
+    lastName:"",
+    adress:"",
+    adressNumber:"",
+    isAdmin: Boolean
+  });
+  const navigate = useNavigate();
+  function updateForm(value) {
+    return setForm((prev) => {
+      return { ...prev, ...value };
+    });
+  }
+
+ // This function will handle the submission.
+ async function onSubmit(e) {
+  e.preventDefault();
+
+  // When a post request is sent to the create url, we'll add a new record to the database.
+  const newUser = { ...form };
+  console.log(newUser);
+
+  await fetch("http://localhost:4000/users", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newUser),
+  })
+  .catch(error => {
+    window.alert(error);
+    return;
+  });
+
+  setForm({ email: "", password: "", firstName: "", lastName:"",adress:"",adressNumber:"",isAdmin:Boolean });
+  navigate("/");
+}
+
     return(
     <div>
         <ThemeProvider theme={theme}>
@@ -56,7 +90,7 @@ const InscriptionForm =()=>{
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate  sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -67,6 +101,7 @@ const InscriptionForm =()=>{
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={(e)=>updateForm({firstName: e.target.value})}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -77,6 +112,7 @@ const InscriptionForm =()=>{
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={(e)=>updateForm({lastName: e.target.value})}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -87,17 +123,41 @@ const InscriptionForm =()=>{
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={(e)=>updateForm({email: e.target.value})}
+                />
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <TextField
+                  required
+                  fullWidth
+                  id="adressNumber"
+                  label="adressNumber"
+                  name="adressNumber"
+                  autoComplete="adressNumber"
+                  onChange={(e)=>updateForm({adressNumber: e.target.value})}
+                />
+              </Grid>
+              <Grid item xs={12} sm={9}>
+                <TextField
+                  required
+                  fullWidth
+                  name="adress"
+                  label="adress"
+                  type="adress"
+                  id="adress"
+                  autoComplete="adress"
+                  onChange={(e)=>updateForm({adress: e.target.value})}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
                   id="password"
-                  autoComplete="new-password"
+                  label="password"
+                  name="password"
+                  autoComplete="password"
+                  onChange={(e)=>updateForm({password: e.target.value})}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -112,6 +172,7 @@ const InscriptionForm =()=>{
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={onSubmit}
             >
              <Link href="/clientSpace" variant="body2">
                   Sign Up
