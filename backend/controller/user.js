@@ -1,3 +1,5 @@
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 import User from "../models/userModel.js";
 
 export const getUsers =  async (req, res) => {
@@ -20,7 +22,9 @@ export const getOneUser = async (req, res) => {
 
 export const createUser = async (req, res) => {
     try {
-        const newUser = await User.create({ email: req.body.email, password: req.body.password, firstName: req.body.firstName, lastName: req.body.lastName, adress:req.body.adress, adressNumber: req.body.adressNumber, isAdmin: req.body.isAdmin })
+        const username = (req.body.firstName + req.body.lastName).toLowerCase()
+        console.log(username);
+        const newUser = await User.create({username: username, email: req.body.email, password: req.body.password, firstName: req.body.firstName, lastName: req.body.lastName, adress:req.body.adress, adressNumber: req.body.adressNumber, isAdmin: req.body.isAdmin })
         res.status(200).json(newUser)
     } catch (error) {
         res.status(404).json({message: error.message })
@@ -40,6 +44,14 @@ export const deleteUser = async (req, res) => {
     try {
         const deletedUser = await User.deleteOne({_id: req.params.id})
         res.status(200).json(deletedUser)
+    } catch(error) {
+        res.status(404).json({message: error.message })
+    }  
+}
+
+export const registerUser = async (req, res) => {
+    try {
+        const takenUsername = await User.findOne({})
     } catch(error) {
         res.status(404).json({message: error.message })
     }  

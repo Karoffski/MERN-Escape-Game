@@ -23,7 +23,15 @@ const DisplayReservations = () => {
         <div>
         {reservationData.map((reservations) => {
             return (
-                <p>{reservations._id}</p>
+                <div>
+                    <p>{reservations._id}</p>
+                    <p>{reservations.numberPlayers}</p>
+                    <p>{reservations.firstName}</p>
+                    <p>{reservations.lastName}</p>
+                    <p>{reservations.birthday}</p>
+                    <p>{reservations.userId}</p>
+                    <p>{reservations.roomId}</p>
+                </div>
             )
         })}
         </div>

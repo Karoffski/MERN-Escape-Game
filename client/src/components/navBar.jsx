@@ -11,7 +11,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 const NavBar= () => {
     
-  
   return(
       <div>
           <Box sx={{ flexGrow: 1 }}>
@@ -29,8 +28,11 @@ const NavBar= () => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link to='rooms'>Rooms</Link>
         </Typography>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Link to='reservations'>Reservations</Link>
+        </Typography>
         <Button color="inherit">
-            <Link to='connectingPage'>connexion</Link>
+            <Link to='connectingPage'>Connexion</Link>
         </Button>
       </Toolbar>
     </AppBar>
