@@ -2,14 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 
-const DisplayRooms=()=>{
-    useEffect(()=>{
+const DisplayRooms= () => {
+    useEffect(() => {
         getData()
     })
 
 const [roomData, setData]= useState([])
 
-const getData=()=>{
+const getData = () => {
     return axios
     .get('http://localhost:4000/rooms')
     .then((res)=>{
@@ -19,7 +19,7 @@ const getData=()=>{
 
 return(
     <div>
-        {roomData.map((room)=>{
+        {roomData.map((room) => {
                     return (
                         <div key={room._id}>
                             <h1>{room.name}</h1>

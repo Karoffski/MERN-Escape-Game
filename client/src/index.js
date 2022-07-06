@@ -7,6 +7,7 @@ import ConnexionForm from './components/connectingPage.jsx';
 import InscriptionForm from './components/inscriptionPage.jsx';
 import ClientSpace from './components/clientSpace.jsx';
 import DisplayOneRoom from './components/room.jsx';
+import DisplayReservations from './components/reservationPage.jsx';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement)
@@ -18,8 +19,9 @@ root.render(
         <Route path='connectingPage' element={<ConnexionForm/>} />
         <Route path='inscriptionPage' element={<InscriptionForm/>} />
         <Route path='rooms' element={<DisplayRooms/>} />
-        <Route path='clientSpace' element={<ClientSpace/>} />
         <Route path='rooms/:id' element={<DisplayOneRoom/>} />
+        <Route path='reservationPage' element={<DisplayReservations/>} />
+        <Route path='clientSpace' element={<ClientSpace/>} />
       </Route>  
     </Routes>
   </BrowserRouter>
