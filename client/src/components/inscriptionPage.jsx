@@ -68,7 +68,7 @@ const InscriptionForm =()=>{
   });
 
   setForm({ email: "", password: "", firstName: "", lastName:"",adress:"",adressNumber:"",isAdmin:Boolean });
-  navigate("/");
+  navigate("/clientSpace");
 }
 
     return(
@@ -174,7 +174,7 @@ const InscriptionForm =()=>{
               sx={{ mt: 3, mb: 2 }}
               onClick={onSubmit}
             >
-             <Link href="/clientSpace" variant="body2">
+             <Link href="clientSpace" variant="body2">
                   Sign Up
              </Link>
             </Button>

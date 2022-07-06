@@ -18,6 +18,7 @@ root.render(
         <Route path='inscriptionPage' element={<InscriptionForm/>}/>
         <Route path='accueilPage' element={<DisplayRoom/>}/>
         <Route path='clientSpace' element={<ClientSpace/>}/>
+        
       </Route>  
     </Routes>
   </BrowserRouter>
