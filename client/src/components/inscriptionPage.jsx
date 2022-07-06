@@ -195,4 +195,4 @@ const InscriptionForm =()=>{
     )
 }
 
-export default InscriptionForm
+export default InscriptionForm;
