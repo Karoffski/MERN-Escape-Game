@@ -31,4 +31,4 @@ app.use('/reservations', reservationRoute);
 mongoose.connect(database, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connection to MongoDB has been established'))
     .then(() => app.listen(PORT, () => console.log("Server has started at port " + PORT)))    
-    .catch((error) => console.log(error.message) & process.exit(1))    
+    .catch((error) => console.log(error.message) & process.exit(1))
