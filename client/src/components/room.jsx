@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+
 
 const DisplayOneRoom = () => {
 
@@ -11,15 +13,20 @@ useEffect(() => {
 let params = useParams()
 
 const [roomData, setRoom] = useState([]);
+//const [reservationData, setReservation] = useState([]);
 
 const getRoomData = () => {
     return axios
         .get(`http://localhost:4000/rooms/${params.id}`)
         .then((res)=>{
         setRoom(res.data)
-    })
-        .catch((err)=>console.error(err))
-    }
+    }).catch((err)=>console.error(err))
+
+    //     .get(`http://localhost:4000/reservations`)
+    //     .then((res) => {
+    //     setReservation(res.data)
+    // }).catch((err)=>console.error(err))
+}
 
 return (
     <div>
@@ -30,6 +37,7 @@ return (
         <p><b>Capacité:</b> {roomData.capacity}</p>
         <h1>Créneaux disponibles:</h1>
         <p>Pas de créneaux disponibles</p>
+        <Button><Link to='../reservation'>Réserver une salle</Link></Button>
     </div>
 )
 
