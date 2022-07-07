@@ -14,7 +14,6 @@ const ReserveRoom = () => {
     useEffect((event) => {
         event.preventDefault(); 
         updateReservation();
-        handleChange();
     })
 
     const style1 = {display: 'flex'};
@@ -35,7 +34,7 @@ const ReserveRoom = () => {
     <div>
         <form style={{...style1, ...style2,...style3, ...style4, ...style5}} onSubmit={handleSubmit}>
             <select onChange={handleChange}>
-                {x.map((w) => {
+                {x.map(w => {
                     return (
                         <option>{w}</option>
                     )
