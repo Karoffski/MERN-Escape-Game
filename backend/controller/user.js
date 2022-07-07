@@ -11,7 +11,16 @@ export const getUsers =  async (req, res) => {
     }  
 }
 
-export const getOneUser = async (req, res) => {
+export const getOneUserByEmail = async (req, res) => {
+    try {
+        const myUser = await User.findById({email: req.params.email})
+        res.status(200).json(myUser);
+    } catch (error) {
+        res.status(404).json({message: error.message })
+    } 
+}
+
+export const getOneUserById = async (req, res) => {
     try {
         const myUser = await User.findById({_id: req.params.id})
         res.status(200).json(myUser);

@@ -41,6 +41,7 @@ const InscriptionForm =()=>{
     isAdmin: Boolean
   });
   const navigate = useNavigate();
+  
   function updateForm(value) {
     return setForm((prev) => {
       return { ...prev, ...value };

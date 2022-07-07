@@ -9,9 +9,7 @@ const DisplayReservations = () => {
     const getReservationData = () => {
     return axios
         .get(`http://localhost:4000/reservations`)
-        .then((res)=>{
-        setReservation(res.data)
-    })
+        .then((res)=>{setReservation(res.data)})
         .catch((err)=>console.error(err))
     }
 
@@ -24,13 +22,12 @@ const DisplayReservations = () => {
         {reservationData.map((reservations) => {
             return (
                 <div>
-                    <p>{reservations._id}</p>
-                    <p>{reservations.numberPlayers}</p>
-                    <p>{reservations.firstName}</p>
-                    <p>{reservations.lastName}</p>
-                    <p>{reservations.birthday}</p>
-                    <p>{reservations.userId}</p>
-                    <p>{reservations.roomId}</p>
+                    <p><b></b> {reservations._id}</p>
+                    <p><b>Number of Players:</b> {reservations.numberPlayers}</p>
+                    <p><b>First Names:</b> {reservations.firstNames}</p>
+                    <p><b>Last Names:</b> {reservations.lastNames}</p>
+                    <p><b></b> {reservations.userId}</p>
+                    <p><b></b> {reservations.roomId}</p><br></br>
                 </div>
             )
         })}
