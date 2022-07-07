@@ -175,7 +175,7 @@ const InscriptionForm =()=>{
               sx={{ mt: 3, mb: 2 }}
               onClick={onSubmit}
             >
-             <Link href="clientSpace" variant="body2">
+             <Link href="/a" variant="body2">
                   Sign Up
              </Link>
             </Button>

@@ -1,13 +1,14 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useEffect, useState, useContext } from "react";
+import { UserContext } from "../userContext";
+import { useNavigate, Link } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
+//import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -15,31 +16,17 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+
 const theme = createTheme();
+
 
 const ConnexionForm = () => {
   // decalration des states 
+  const { user, login,changeUser } = useContext(UserContext);
   const [emailUsers, setEmailUsers] = useState([]);
   const [users, setUsers] = useState([]);
 
-  const [validEmail, setValidEmail] = useState("");
+  
   const [validPassword, setValidPassword] = useState("");
   //const [valid,setValid]=useState("")
   //temporaire, pour accès aux données
@@ -59,23 +46,27 @@ const ConnexionForm = () => {
   const navigate = useNavigate();
   const getEmailUser = () => {
     return axios
-      .get(`http://localhost:4000/users/${validEmail}`)
+      .get(`http://localhost:4000/users/${user.email}`)
       .then((res) => {
         setEmailUsers(res.data);
         console.log(res.data)
       })
       .catch((err) => console.error(err));
   };
-
+ 
  const handleSubmit=(e) => {
   e.preventDefault()
     getEmailUser();
-    if(emailUsers.email===validEmail && emailUsers.password===validPassword){
-      navigate("/clientSpace")
-    }
-    
+    login()
+    navigateLog()
   }
 
+  const navigateLog=() => {
+    if(emailUsers.email===user.email && emailUsers.password===validPassword){
+      console.log("hello")
+      navigate("/accueilPage")
+     }
+    }
   /*let validUpdate = "";
 
   const handleSubmit = (event) => {
@@ -97,9 +88,12 @@ const ConnexionForm = () => {
   console.log(users)
   console.log(validEmail)
   console.log(validPassword)*/
- console.log(validEmail)
+ 
  console.log(users)
  console.log(emailUsers)
+ console.log(user)
+ 
+ 
 
   return (
     <div>
@@ -153,11 +147,16 @@ const ConnexionForm = () => {
                   fullWidth
                   id="email"
                   label="Email Address"
-                  name="email"
+                  name="email2"
                   autoComplete="email"
                   autoFocus
-                  onChange={(event) => setValidEmail(event.target.value)}
+                  onChange={changeUser}
                 />
+                <Grid item xs>
+                    <Link to="/accueilPage" variant="body2">
+                      test context
+                    </Link>
+                  </Grid>
                 <TextField
                   margin="normal"
                   required
@@ -179,26 +178,27 @@ const ConnexionForm = () => {
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
+              
                   onClick={handleSubmit} 
                 >
                   
-                  <Link href=""variant="body2">
+                  <Link to="" variant="body2">
                     Sign In
                   </Link>
                 </Button>
                 <Grid container>
                   <Grid item xs>
-                    <Link href="#" variant="body2">
+                    <Link to="#" variant="body2">
                       Forgot password?
                     </Link>
                   </Grid>
                   <Grid item>
-                    <Link href="/inscriptionPage" variant="body2">
+                    <Link to="/inscriptionPage" variant="body2">
                       {"Don't have an account? Sign Up"}
                     </Link>
                   </Grid>
                 </Grid>
-                <Copyright sx={{ mt: 5 }} />
+                
               </Box>
             </Box>
           </Grid>
