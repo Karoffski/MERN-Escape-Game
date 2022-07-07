@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot} from 'react-dom/client'
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
+import { UserProvider } from './userContext';
 import NavBar from './components/navBar.jsx'
 import DisplayRoom from './components/accueilPage.jsx';
 import ConnexionForm from './components/connectingPage.jsx';
@@ -12,14 +13,14 @@ const rootElement = document.getElementById('root');
 const root = createRoot(rootElement)
 root.render(
   <BrowserRouter>
-    <Routes>       
-      <Route path='/' element={<NavBar/>}>
+    <Routes>   
+      <Route path='/' element={<UserProvider><NavBar/></UserProvider>}>
         <Route path='connectingPage' element={<ConnexionForm/>}/>
         <Route path='inscriptionPage' element={<InscriptionForm/>}/>
         <Route path='accueilPage' element={<DisplayRoom/>}/>
-        <Route path='clientSpace' element={<ClientSpace/>}/>
-        
-      </Route>  
+        <Route path='clientSpace' element={<ClientSpace/>}/> 
+      </Route> 
+       
     </Routes>
   </BrowserRouter>
 )

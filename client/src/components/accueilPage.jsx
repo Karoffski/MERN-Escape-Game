@@ -1,7 +1,9 @@
 import axios from "axios";
-import React,{useEffect, useState} from "react";
+import React,{useEffect, useState,useContext} from "react";
+import { UserContext } from "../userContext";
 
 const DisplayRoom=() =>{
+    const {user} = useContext(UserContext);
     useEffect(()=>{
         getImage()
        },[])
@@ -15,11 +17,7 @@ const DisplayRoom=() =>{
    }
     return(
         <div>
-            {images.map((image)=>{
-                        return (
-                        <img src={image.url} alt="" key={image.id} />
-                        )
-                    })}
+                 
             
         </div>
     )

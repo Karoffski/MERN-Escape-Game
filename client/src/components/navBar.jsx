@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import * as React from "react";
+import { UserContext } from "../userContext";
+import { useNavigate } from "react-router";
+import  React, { useEffect, useState,useContext } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,8 +12,11 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const NavBar = () => {
+  const {user} = useContext(UserContext);
+  
   return (
     <div>
+      
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
@@ -25,10 +30,10 @@ const NavBar = () => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <Link to="accueilPage">home </Link>
+              <Link to="accueilPage">home</Link>
             </Typography>
             <Button color="inherit">
-              <Link to="connectingPage">connexion</Link>
+              {!user.auth?<Link to="connectingPage">connexion</Link>:<Link to="connectingPage">{user.email}</Link>}
             </Button>
           </Toolbar>
         </AppBar>
