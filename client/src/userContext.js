@@ -2,6 +2,7 @@ import { toggleButtonGroupClasses } from "@mui/material";
 import React, { createContext, useState } from "react";
 
 
+
 export const UserContext = createContext({ email: '', auth: false });
 export const UserProvider = ({ children }) => {
     // User is the name of the "data" that gets stored in context
@@ -10,7 +11,6 @@ export const UserProvider = ({ children }) => {
     setUser(user => ({
       email:e.target.value,
       auth:false,
-
      }));
 
   };

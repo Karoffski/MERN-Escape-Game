@@ -33,7 +33,7 @@ const NavBar = () => {
               <Link to="accueilPage">home</Link>
             </Typography>
             <Button color="inherit">
-              {!user.auth?<Link to="connectingPage">connexion</Link>:<Link to="connectingPage">{user.email}</Link>}
+              {!user.auth?<Link to="connectingPage">log in</Link>:<Link to="connectingPage">log out</Link>}
             </Button>
           </Toolbar>
         </AppBar>

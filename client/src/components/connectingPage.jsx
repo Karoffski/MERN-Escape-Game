@@ -8,7 +8,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-//import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -21,14 +20,14 @@ const theme = createTheme();
 
 
 const ConnexionForm = () => {
-  // decalration des states 
+  // declaration des states 
   const { user, login,changeUser } = useContext(UserContext);
   const [emailUsers, setEmailUsers] = useState([]);
   const [users, setUsers] = useState([]);
 
   
   const [validPassword, setValidPassword] = useState("");
-  //const [valid,setValid]=useState("")
+  
   //temporaire, pour accès aux données
   const getUser = () => {
     return axios
@@ -63,31 +62,10 @@ const ConnexionForm = () => {
 
   const navigateLog=() => {
     if(emailUsers.email===user.email && emailUsers.password===validPassword){
-      console.log("hello")
       navigate("/accueilPage")
      }
     }
-  /*let validUpdate = "";
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    for (let i = 0; i < users.length; i++) {
-      if (
-        users[i].email === validEmail &&
-        users[i].password === validPassword
-      ) {
-        validUpdate += users[i]._id;
-        console.log(validUpdate);
-        break;
-      } else {
-        console.log("false");
-      }
-    }
-    setValid(validUpdate)
-  };
-  console.log(users)
-  console.log(validEmail)
-  console.log(validPassword)*/
+  
  
  console.log(users)
  console.log(emailUsers)
@@ -152,11 +130,6 @@ const ConnexionForm = () => {
                   autoFocus
                   onChange={changeUser}
                 />
-                <Grid item xs>
-                    <Link to="/accueilPage" variant="body2">
-                      test context
-                    </Link>
-                  </Grid>
                 <TextField
                   margin="normal"
                   required
